@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import { Form, Button } from "react-bootstrap";
+import {Form, Button, Spinner} from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -62,7 +62,7 @@ class Login extends Component {
 
     render() {
         const { login, password, formValid } = this.state;
-        const { requestErrorMessage } = this.props;
+        const { requestErrorMessage, requestProcessing } = this.props;
 
         console.log("requestErrorMessage: " + requestErrorMessage);
 
@@ -88,6 +88,10 @@ class Login extends Component {
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>
+
+                        { requestProcessing && (
+                            <Spinner animation="border" size="sm" variant="primary" />
+                        )}
 
                         { requestErrorMessage && (
                             <p className="login-error-message">
