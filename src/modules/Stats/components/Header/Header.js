@@ -2,7 +2,10 @@ import React, {Component} from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
+import * as loginActions from '../../../Auth/redux';
+import { bindActionCreators } from "redux";
+
 
 // READ https://react-bootstrap.netlify.app/components/navbar/#navbars
 
@@ -12,14 +15,28 @@ class Header extends Component{
             name: PropTypes.string,
             lastName: PropTypes.string,
             email: PropTypes.string,
-        })
+        }),
+        isLoggedIn: PropTypes.bool,
+        history: PropTypes.object,
+        checkAuth: PropTypes.func,
     }
 
     componentDidMount() {
-        console.log(this.props.user);
-        const { user } = this.props;
-        if(user == null) {
-            return this.props.history.push('/login');
+        this.props.checkAuth();
+        // forceUpdate() здесь нужен для того, чтобы ЗАСТАВИТЬ компонент обновиться после выполнения checkAuth.
+        // Дело в том, что в случае, когда пользователь не залогинен, пропсы, приходящие в компонент не поменяются после выполнения checkAuth.
+        // Все пропсы останутся в старом значении.
+        // В частности, isLoggedIn (а т) был false и останется false. И компонент решит, что ничего не поменялось, и componentDidUpdate не вызовется.
+        // Нам же надо чтобы componentDidUpdate все таки вызвался, даже если значения пропсов не поменяются.
+        this.forceUpdate();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { isLoggedIn, history } = this.props;
+
+        console.log('componentDidUpdate isLoggedIn: '+isLoggedIn);
+        if (!isLoggedIn) {
+            history.push('/login');
         }
     }
 
@@ -52,11 +69,12 @@ class Header extends Component{
 function mapStateToProps(state) {
     return {
         user: state.login.user,
+        isLoggedIn: state.login.isLoggedIn,
     };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {};
+  return bindActionCreators(loginActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

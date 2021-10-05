@@ -18,6 +18,7 @@ class Login extends Component {
         requestProcessing: PropTypes.bool,
         requestErrorMessage: PropTypes.string,
         login: PropTypes.func,
+        checkAuth: PropTypes.func,
         history: PropTypes.object,
     };
 
@@ -51,6 +52,10 @@ class Login extends Component {
         this.props.login(login, password);
     }
 
+    componentDidMount() {
+        this.props.checkAuth();
+    }
+
     // READ https://blog.logrocket.com/react-lifecycle-methods-tutorial-examples/
     componentDidUpdate(prevProps, prevState) {
         const { isLoggedIn, history } = this.props;
@@ -63,8 +68,6 @@ class Login extends Component {
     render() {
         const { login, password, formValid } = this.state;
         const { requestErrorMessage, requestProcessing } = this.props;
-
-        console.log("requestErrorMessage: " + requestErrorMessage);
 
         return (
             <div class="login">

@@ -1,18 +1,38 @@
 import axios from 'axios';
+import { getSession } from './utils/auth_utils';
 
 const host = 'http://localhost:8081';
 const config = {
-    validateStatus: function (status) {
+    validateStatus: function (_) {
         return true; // default
     }
 };
 
 export async function login(login, password) {
-    return await _post(host + "/login", {login, password});
+    return await _post(host + "/login", {login, password}, false);
 }
 
 export async function signup(user) {
-    return await _post(host + "/signup", user);
+    return await _post(host + "/signup", user, false);
+}
+
+export async function checkAuth() {
+    // return await _post(host + "/checkAuth");
+    const response = await new Promise((resolve, reject) => {
+        resolve({
+            status: 220,
+            data: {
+                user: {
+                    id: 666,
+                    name: 'John',
+                    lastName: 'Johnson',
+                    login: 'jjASS',
+                },
+            }
+        });
+    });
+
+    return _checkAndWrapResponse(response);
 }
 
 async function _get(url) {
@@ -21,15 +41,15 @@ async function _get(url) {
     return _checkAndWrapResponse(response);
 }
 
-async function _post(url, postData = {}) {
-    const response = await axios.post(url, postData, config);
+async function _post(url, postData = {}, withAuth = true) {
+    const requestData = withAuth ? { ...postData, userId: getSession() } : postData;
+
+    const response = await axios.post(url, requestData, config);
 
     return _checkAndWrapResponse(response);
 }
 
 function _checkAndWrapResponse(response) {
-    console.log("response");
-    console.log(response);
     if (!response) {
         return {
             success: false,
@@ -44,14 +64,18 @@ function _checkAndWrapResponse(response) {
         }
     }
 
-    if (response.status === 401) {
-        window.location.href = window.location.href.host + '/login';
-    }
-
     if (response.status === 400) {
         return {
             success: false,
             errorMessage: response.data.message || 'Client-side error',
+        }
+    }
+
+    if (response.status === 401) {
+        return {
+            success: false,
+            authFail: true,
+            errorMessage: 'Not Authorized',
         }
     }
 
