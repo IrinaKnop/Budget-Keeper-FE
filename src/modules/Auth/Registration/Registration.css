@@ -1,0 +1,17 @@
+.registration {
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-form-wrapper {
+    width: 500px;
+}
+
+.registration-error-message {
+    margin-top: 10px;
+    color: red;
+}
