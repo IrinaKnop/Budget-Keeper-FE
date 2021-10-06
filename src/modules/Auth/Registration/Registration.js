@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, Spinner} from "react-bootstrap";
 import "./Registration.css";
 import {bindActionCreators} from "redux";
 import * as loginActions from "../redux";
@@ -83,7 +83,7 @@ class Registration extends Component {
 
     render() {
         const { name, lastName, email, login, password, signupErrorMessage } = this.state;
-        const { requestErrorMessage } = this.props;
+        const { requestErrorMessage, requestProcessing } = this.props;
 
 
         return (
@@ -116,6 +116,10 @@ class Registration extends Component {
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>
+
+                        { requestProcessing && (
+                            <Spinner animation="border" size="sm" variant="primary" />
+                        )}
 
                         { requestErrorMessage && (
                             <p className="registration-error-message">
