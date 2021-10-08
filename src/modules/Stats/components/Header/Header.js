@@ -22,7 +22,7 @@ class Header extends Component{
         logout: PropTypes.func,
     }
 
-    onClick = (event) => {
+    onExitButtonClick = (event) => {
         this.props.logout();
     }
 
@@ -66,7 +66,7 @@ class Header extends Component{
                             )}
                         </Nav>
                         <Nav>
-                            <Button onClick={this.onClick}>
+                            <Button onClick={this.onExitButtonClick}>
                                 Exit
                             </Button>
                         </Nav>
