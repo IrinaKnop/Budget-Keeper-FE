@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
@@ -19,6 +19,11 @@ class Header extends Component{
         isLoggedIn: PropTypes.bool,
         history: PropTypes.object,
         checkAuth: PropTypes.func,
+        logout: PropTypes.func,
+    }
+
+    onExitButtonClick = (event) => {
+        this.props.logout();
     }
 
     componentDidMount() {
@@ -59,6 +64,11 @@ class Header extends Component{
                                     {user.login}
                                 </Navbar.Text>
                             )}
+                        </Nav>
+                        <Nav>
+                            <Button onClick={this.onExitButtonClick}>
+                                Exit
+                            </Button>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -17,22 +17,7 @@ export async function signup(user) {
 }
 
 export async function checkAuth() {
-    // return await _post(host + "/checkAuth");
-    const response = await new Promise((resolve, reject) => {
-        resolve({
-            status: 220,
-            data: {
-                user: {
-                    id: 666,
-                    name: 'John',
-                    lastName: 'Johnson',
-                    login: 'jjASS',
-                },
-            }
-        });
-    });
-
-    return _checkAndWrapResponse(response);
+    return await _post(host + "/checkAuth");
 }
 
 async function _get(url) {

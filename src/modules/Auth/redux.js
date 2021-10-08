@@ -1,9 +1,11 @@
 import * as api from '../../api';
-import { setSession } from '../../utils/auth_utils';
+import {clearSession, setSession} from '../../utils/auth_utils';
 
 const LOGIN_START = 'fe-react-template/Auth/LOGIN_START';
 const LOGIN_FAIL = 'fe-react-template/Auth/LOGIN_FAIL';
 const LOGIN_SUCCESS = 'fe-react-template/Auth/LOGIN_SUCCESS';
+
+const LOGOUT = 'fe-react-template/Auth/LOGOUT';
 
 const SIGNUP_START = 'fe-react-template/Auth/SIGNUP_START';
 const SIGNUP_FAIL = 'fe-react-template/Auth/SIGNUP_FAIL';
@@ -81,6 +83,12 @@ export default function reducer(state = initialState, action) {
                 isLoggedIn: true,
                 user: action.payload,
             };
+        case LOGOUT:
+            return {
+                ...state,
+                isLoggedIn: false,
+                user: null,
+            };
         default:
             return state;
     }
@@ -142,6 +150,15 @@ export function checkAuth() {
             dispatch({ type: CHECK_AUTH_FAIL, payload: checkAuthResult.errorMessage });
         }
     };
+}
+
+export function logout() {
+    console.log('LOGOUT CALLED');
+    return async (dispatch, getState) => {
+        dispatch({type: LOGOUT});
+        clearSession();
+    }
+
 }
 
 function _extractUser(userResponseData) {
