@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import UselessButton from "../../features/UselessButton/UselessButton";
 import Header from "../../features/Header/Header";
 import './Stats.css';
+import DateAndTimeNow from "./components/DateAndTimeNow";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -25,6 +26,9 @@ class Stats extends Component {
                     </Col>
                     <Col>
                         Stats page main content
+                        <div>
+                            <DateAndTimeNow />
+                        </div>
                     </Col>
                 </Row>
                 <UselessButton />
