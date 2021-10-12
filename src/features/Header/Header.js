@@ -3,7 +3,7 @@ import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
-import * as loginActions from '../../../Auth/redux';
+import * as loginActions from '../../modules/Auth/redux';
 import { bindActionCreators } from "redux";
 
 
@@ -58,15 +58,15 @@ class Header extends Component{
                             <Nav.Link href="/stats">Stats</Nav.Link>
                             <Nav.Link href="https://pikabu.ru">Fuck it!</Nav.Link>
                         </Nav>
-                        <Nav>
+                        <Nav className="justify-content-end">
+                            <Nav className="me-2">
                             {user != null && (
                                 <Navbar.Text>
                                     {user.login}
                                 </Navbar.Text>
                             )}
-                        </Nav>
-                        <Nav>
-                            <Button onClick={this.onExitButtonClick}>
+                            </Nav>
+                            <Button className="me-2" onClick={this.onExitButtonClick}>
                                 Exit
                             </Button>
                         </Nav>
