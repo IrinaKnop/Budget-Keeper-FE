@@ -70,9 +70,9 @@ class Login extends Component {
         const { requestErrorMessage, requestProcessing } = this.props;
 
         return (
-            <div class="login">
+            <div className="login">
                 <h1>Login</h1>
-                <div class="login-form-wrapper">
+                <div className="login-form-wrapper">
                     <Form onSubmit={this.onSubmit} validated={formValid}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Login</Form.Label>

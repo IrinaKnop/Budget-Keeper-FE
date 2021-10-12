@@ -53,7 +53,6 @@ class Registration extends Component {
 
         const formValid = this.validateForm();
         this.setState({formValid});
-        //this.props.login(email, password);
         if (formValid) {
             this.props.signup({
                 name,
@@ -69,7 +68,7 @@ class Registration extends Component {
         const { isLoggedIn, history } = this.props;
 
         if (isLoggedIn) {
-            history.push('/stats');
+            history.push('/initialize');
         }
     }
 
@@ -85,11 +84,10 @@ class Registration extends Component {
         const { name, lastName, email, login, password, signupErrorMessage } = this.state;
         const { requestErrorMessage, requestProcessing } = this.props;
 
-
         return (
-            <div class="registration">
+            <div className="registration">
                 <h1>Registration</h1>
-                <div class="registration-form-wrapper">
+                <div className="registration-form-wrapper">
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group className="mb-3">
                             <Form.Label>Name</Form.Label>

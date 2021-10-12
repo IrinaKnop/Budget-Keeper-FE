@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import UselessButton from "../../features/UselessButton/UselessButton";
-import Header from "./components/Header";
+import Header from "../../features/Header/Header";
 import './Stats.css';
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
