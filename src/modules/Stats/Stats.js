@@ -21,14 +21,25 @@ class Stats extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col lg={3}>
+                    <Col md="auto">
                         Left panel content
+                        <Row>
+
+                        </Row>
                     </Col>
-                    <Col>
+                    <Col xs>
                         Stats page main content
-                        <div>
-                            <DateAndTimeNow />
-                        </div>
+                        <Row>
+                            <Col>
+                                <div>
+                                    <DateAndTimeNow />
+                                </div>
+                            </Col>
+                            <Col md="auto">
+                                Здесь что-то будет
+                            </Col>
+                        </Row>
+
                     </Col>
                 </Row>
                 <UselessButton />

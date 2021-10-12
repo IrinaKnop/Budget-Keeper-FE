@@ -39,7 +39,6 @@ class DateAndTimeNow extends Component {
                     </Row>
                 </Container>
             </div>
-
         );
     }
 }
