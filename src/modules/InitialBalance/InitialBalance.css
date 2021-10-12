@@ -1,0 +1,17 @@
+.initialBalance {
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.initialBalance-form-wrapper {
+    width: 500px;
+}
+
+.initialBalance-error-message {
+    margin-top: 10px;
+    color: red;
+}

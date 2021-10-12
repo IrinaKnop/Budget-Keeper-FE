@@ -20,7 +20,12 @@ export async function checkAuth() {
     return await _post(host + "/checkAuth");
 }
 
+export async function initialBalance(initialBalanceValue) {
+    return await _post(host + "/initialBalance", initialBalanceValue);
+}
+
 async function _get(url) {
+    //host + `url?userId=${getSession()}`
     const response = await axios.get(url, config);
 
     return _checkAndWrapResponse(response);
