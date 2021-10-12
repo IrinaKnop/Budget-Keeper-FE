@@ -8,6 +8,7 @@ import {
     Redirect,
   } from "react-router-dom";
 import Registration from "./modules/Auth/Registration";
+import InitialBalance from "./modules/InitialBalance/InitialBalance";
 
 // READ https://reactrouter.com/web/guides/quick-start
 
@@ -25,6 +26,10 @@ function createRouter() {
 
                 <Route path="/registration">
                     <Registration />
+                </Route>
+
+                <Route path="/initialize">
+                    <InitialBalance />
                 </Route>
 
                 <Route
