@@ -4,6 +4,7 @@ import UselessButton from "../../features/UselessButton/UselessButton";
 import Header from "../../features/Header/Header";
 import './Stats.css';
 import DateAndTimeNow from "./components/DateAndTimeNow";
+import CurrentBalance from "./components/CurrentBalance/CurrentBalance";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -36,7 +37,7 @@ class Stats extends Component {
                                 </div>
                             </Col>
                             <Col md="auto">
-                                Здесь что-то будет
+                                <CurrentBalance />
                             </Col>
                         </Row>
 

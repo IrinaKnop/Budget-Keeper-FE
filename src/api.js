@@ -24,8 +24,12 @@ export async function initialBalance(initialBalanceValue) {
     return await _post(host + "/initialBalance", initialBalanceValue);
 }
 
+export async function getCurrentBalance() {
+    return await _get(host + `/getCurrentBalance?userId=${getSession()}`);
+}
+
 async function _get(url) {
-    //host + `url?userId=${getSession()}`
+    //host + `?userId=${getSession()}`
     const response = await axios.get(url, config);
 
     return _checkAndWrapResponse(response);
