@@ -1,0 +1,22 @@
+.expense {
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+    align-items: center;
+}
+
+.expense-form {
+    display: flex;
+    width: 100%;
+}
+
+.expense-form-group {
+    margin: 5px;
+    position: relative;
+}
+
+.btn-expense-form-group {
+    position: absolute;
+    bottom: 0;
+
+}

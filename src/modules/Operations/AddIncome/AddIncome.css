@@ -1,0 +1,22 @@
+.income {
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+    align-items: center;
+}
+
+.income-form {
+    display: flex;
+    width: 100%;
+}
+
+.income-form-group {
+    margin: 5px;
+    position: relative;
+}
+
+.btn-income-form-group {
+    position: absolute;
+    bottom: 0;
+
+}

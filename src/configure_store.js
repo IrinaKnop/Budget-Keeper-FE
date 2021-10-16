@@ -9,6 +9,8 @@ import login from './modules/Auth/redux';
 import uselessButton from './features/UselessButton/redux';
 import initializeBalance from './modules/InitialBalance/redux'
 import currentBalance from "./modules/Stats/components/CurrentBalance/redux";
+import payments from "./modules/Operations/redux";
+
 
 function configureStore() {
     const middlewares = [
@@ -20,6 +22,7 @@ function configureStore() {
         uselessButton,
         initializeBalance,
         currentBalance,
+        payments,
     });
 
     return createStore(

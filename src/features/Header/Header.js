@@ -29,9 +29,11 @@ class Header extends Component{
     componentDidMount() {
         this.props.checkAuth();
         // forceUpdate() здесь нужен для того, чтобы ЗАСТАВИТЬ компонент обновиться после выполнения checkAuth.
-        // Дело в том, что в случае, когда пользователь не залогинен, пропсы, приходящие в компонент не поменяются после выполнения checkAuth.
+        // Дело в том, что в случае, когда пользователь не залогинен, пропсы, приходящие в компонент не поменяются
+        // после выполнения checkAuth.
         // Все пропсы останутся в старом значении.
-        // В частности, isLoggedIn (а т) был false и останется false. И компонент решит, что ничего не поменялось, и componentDidUpdate не вызовется.
+        // В частности, isLoggedIn (а т) был false и останется false. И компонент решит, что ничего не поменялось,
+        // и componentDidUpdate не вызовется.
         // Нам же надо чтобы componentDidUpdate все таки вызвался, даже если значения пропсов не поменяются.
         this.forceUpdate();
     }
@@ -39,10 +41,10 @@ class Header extends Component{
     componentDidUpdate(prevProps, prevState) {
         const { isLoggedIn, history } = this.props;
 
-        console.log('componentDidUpdate isLoggedIn: '+isLoggedIn);
-        if (!isLoggedIn) {
-            history.push('/login');
-        }
+
+        // if (!isLoggedIn) {
+        //     history.push('/login');
+        // }
     }
 
     render() {
@@ -56,6 +58,7 @@ class Header extends Component{
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/stats">Stats</Nav.Link>
+                            <Nav.Link href="/operations">Операции</Nav.Link>
                             <Nav.Link href="https://pikabu.ru">Fuck it!</Nav.Link>
                         </Nav>
                         <Nav className="justify-content-end">

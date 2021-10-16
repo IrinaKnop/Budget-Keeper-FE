@@ -9,6 +9,7 @@ import {
   } from "react-router-dom";
 import Registration from "./modules/Auth/Registration";
 import InitialBalance from "./modules/InitialBalance/InitialBalance";
+import Operations from "./modules/Operations";
 
 // READ https://reactrouter.com/web/guides/quick-start
 
@@ -30,6 +31,10 @@ function createRouter() {
 
                 <Route path="/initialize">
                     <InitialBalance />
+                </Route>
+
+                <Route path="/operations">
+                    <Operations />
                 </Route>
 
                 <Route

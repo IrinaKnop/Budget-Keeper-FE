@@ -28,6 +28,18 @@ export async function getCurrentBalance() {
     return await _get(host + `/getCurrentBalance?userId=${getSession()}`);
 }
 
+export async function getAvailableCategories() {
+    return await _get(host + `/getAvailableCategories?userId=${getSession()}`);
+}
+
+export async function getAllPaymentsWithIncomeLabel(incomeLabel) {
+    return await _get(host + `/getAllPaymentsWithIncomeLabel?userId=${getSession()}&incomeLabel=${incomeLabel}`);
+}
+
+export async function addPayment(payment) {
+    return await _post(host + "/addPayment", payment);
+}
+
 async function _get(url) {
     //host + `?userId=${getSession()}`
     const response = await axios.get(url, config);

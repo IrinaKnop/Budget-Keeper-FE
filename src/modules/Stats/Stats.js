@@ -25,7 +25,7 @@ class Stats extends Component {
                     <Col md="auto">
                         Left panel content
                         <Row>
-
+                            Здесь будет диаграмма
                         </Row>
                     </Col>
                     <Col xs>

@@ -6,15 +6,11 @@ import {connect} from "react-redux";
 
 class CurrentBalance extends Component {
     static propTypes = {
-        // currentBalance: PropTypes.shape( {
-        //     finalBalance: PropTypes.number,
-        // }),
         finalBalance: PropTypes.number,
         getCurrentBalance: PropTypes.func,
     }
 
     componentDidMount() {
-        console.log("This is componentDidMount")
         this.props.getCurrentBalance();
     }
 
