@@ -6,6 +6,7 @@ import './Stats.css';
 import DateAndTimeNow from "./components/DateAndTimeNow";
 import CurrentBalance from "./components/CurrentBalance/CurrentBalance";
 import LastOperations from "./components/LastOperations/LastOperations";
+import DailyLimit from "./components/DailyLimit/DailyLimit";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -27,6 +28,9 @@ class Stats extends Component {
                         Left panel content
                         <Row>
                             Здесь будет диаграмма
+                        </Row>
+                        <Row>
+                            <DailyLimit/>
                         </Row>
                     </Col>
                     <Col className="right-half-page">

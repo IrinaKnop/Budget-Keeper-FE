@@ -20,7 +20,6 @@ export default function reducer(state = initialState, action) {
 }
 
 export function getCurrentBalance() {
-    console.log("Это getCurrentBalance");
     return async (dispatch, getState) => {
         const balanceResult = await api.getCurrentBalance();
 

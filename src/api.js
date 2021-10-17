@@ -28,6 +28,10 @@ export async function getCurrentBalance() {
     return await _get(host + `/getCurrentBalance?userId=${getSession()}`);
 }
 
+export async function getDailyLimit() {
+    return await _get(host + `/getDailyLimit?userId=${getSession()}`)
+}
+
 export async function getAvailableCategories() {
     return await _get(host + `/getAvailableCategories?userId=${getSession()}`);
 }

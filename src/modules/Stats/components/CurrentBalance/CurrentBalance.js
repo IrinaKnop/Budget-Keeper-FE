@@ -1,7 +1,7 @@
 import {Component} from "react";
 import PropTypes from "prop-types";
 import * as currentBalanceActions from './redux';
-import {bindActionCreators, getCurrentBalance} from 'redux';
+import {bindActionCreators} from 'redux';
 import {connect} from "react-redux";
 
 class CurrentBalance extends Component {
