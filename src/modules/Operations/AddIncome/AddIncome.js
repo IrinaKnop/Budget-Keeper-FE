@@ -72,7 +72,6 @@ class AddIncome extends Component {
         event.stopPropagation();
 
         const {incomeLabel, date, categoryName, subcategoryName, value} = this.state;
-        console.log(incomeLabel, date, categoryName, subcategoryName, value);
 
         this.props.addNewPayment({
             incomeLabel,
@@ -81,26 +80,23 @@ class AddIncome extends Component {
             subcategoryName,
             value
         });
+
+        this.setState( {
+            date: "",
+            categoryName: "",
+            subcategoryName: "",
+            value: "",
+        });
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        const {isAddedPayment} = this.props;
-        if (isAddedPayment) {
-            this.props.getAllPayments();
-        }
-    }
-
-    componentWillUnmount() {
-        this.setState( () => ({
-            date: null,
-            categoryName: null,
-            subcategoryName: null,
-            value: null,
-        }));
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     const {isAddedPayment} = this.props;
+    //     if (isAddedPayment) {
+    //         this.props.getAllPayments();
+    //     }
+    // }
 
     render() {
-        console.log(this.props);
         const {date, categoryName, subcategoryName, value} = this.state;
         const categoriesNames = this.props.listCategories?.incomeList
             .map(category => category.name);
@@ -109,9 +105,7 @@ class AddIncome extends Component {
             .filter(subcategory => subcategory.name === categoryName)
             .flatMap(subcategory => subcategory.listSubcategories)
             .map(subCategory => subCategory.name);
-        console.log(categoryName);
-        console.log(categoriesNames);
-        console.log(subCategoriesNames);
+        console.log("CFGTJULIK " + value);
 
         return (
             <div className="income">

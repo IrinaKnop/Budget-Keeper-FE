@@ -16,8 +16,6 @@ class IncomeTable extends Component {
             value: PropTypes.number,
             }
         )),
-        isAddedPayment: PropTypes.bool,
-        history: PropTypes.object,
         getAllPayments: PropTypes.func,
     }
 
@@ -30,17 +28,16 @@ class IncomeTable extends Component {
     }
 
     componentDidMount() {
-        console.log("INCOME_TABLE");
         this.props.getAllPayments();
         console.log(this.props);
         this.forceUpdate();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const {history, isAddedPayment} = this.props;
-        if(isAddedPayment) {
-            history.push('/operations');
-        }
+        // const {history, isAddedPayment} = this.props;
+        // if(isAddedPayment) {
+        //     history.push('/operations');
+        // }
     }
 
     render() {

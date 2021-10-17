@@ -82,24 +82,23 @@ class AddExpense extends Component {
             value
         })
 
-        //такое очищение формы не рабтает
-        // this.setState( prevState => ({
-        //     date: null,
-        //     categoryName: null,
-        //     subcategoryName: null,
-        //     value: null,
-        // }));
+        this.setState( {
+            date: "",
+            categoryName: "",
+            subcategoryName: "",
+            value: "",
+        });
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        const {isAddedPayment} = this.props;
-        if (isAddedPayment) {
-            this.props.getAllPayments();
-        }
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     const {isAddedPayment} = this.props;
+    //     if (isAddedPayment) {
+    //         this.props.getAllPayments();
+    //     }
+    // }
 
     render() {
-        console.log("Рендер добавления доходов");
+
         const {date, categoryName, subcategoryName, value} = this.state;
         const categoriesNames = this.props.listCategories?.expensesList
             .map(category => category.name);
@@ -108,9 +107,6 @@ class AddExpense extends Component {
             .filter(subcategory => subcategory.name === categoryName)
             .flatMap(subcategory => subcategory.listSubcategories)
             .map(subCategory => subCategory.name);
-        console.log(categoryName);
-        console.log(categoriesNames);
-        console.log(subCategoriesNames);
 
         return (
             <div className="expense">

@@ -12,9 +12,7 @@ const initialState = {
     listCategories: null,
     listPayments: [],
     listLastPayments: [],
-    payment: null,
     addingProcessing: false,
-    isAddedPayment: false,
 }
 
 export default function reducer(state = initialState, action) {
@@ -27,7 +25,6 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_PAYMENTS:
             return {
                 ...state,
-                isAddedPayment: false,
                 listPayments: action.payload,
             };
         case GET_LAST_PAYMENTS:
@@ -49,8 +46,7 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 addingProcessing: false,
-                isAddedPayment: true,
-                payment: action.payload,
+                listPayments: action.payload,
             }
         default:
             return state;
@@ -94,12 +90,12 @@ export function addNewPayment(payment) {
     return async (dispatch, getState) => {
         dispatch({ type: ADD_PAYMENT_START });
 
-        const paymentResult = api.addPayment(payment)
+        const paymentResult = await api.addPayment(payment)
 
-        if ((await paymentResult).success) {
+        if (paymentResult.success) {
             dispatch({
                 type: ADD_PAYMENT_SUCCESS,
-                payload: paymentResult.data,
+                payload: [paymentResult.data, ...getState().payments.listPayments],
             });
         }
         else {
