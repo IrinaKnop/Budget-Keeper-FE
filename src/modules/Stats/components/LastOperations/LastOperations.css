@@ -1,0 +1,9 @@
+.last-payments {
+    display: flex;
+    font-size: 99%;
+    margin: 10px;
+}
+
+.table-last-payments {
+    width: 100%;
+}

@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, {Component} from "react";
+import {Col, Container, Row} from "react-bootstrap";
 import UselessButton from "../../features/UselessButton/UselessButton";
 import Header from "../../features/Header/Header";
 import './Stats.css';
 import DateAndTimeNow from "./components/DateAndTimeNow";
 import CurrentBalance from "./components/CurrentBalance/CurrentBalance";
+import LastOperations from "./components/LastOperations/LastOperations";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -18,32 +19,41 @@ class Stats extends Component {
             <Container>
                 <Row>
                     <Col>
-                        <Header />
+                        <Header/>
                     </Col>
                 </Row>
                 <Row>
-                    <Col md="auto">
+                    <Col className="left-panel">
                         Left panel content
                         <Row>
                             Здесь будет диаграмма
                         </Row>
                     </Col>
-                    <Col xs>
+                    <Col className="right-half-page">
                         Stats page main content
                         <Row>
                             <Col>
                                 <div>
-                                    <DateAndTimeNow />
+                                    <DateAndTimeNow/>
                                 </div>
                             </Col>
                             <Col md="auto">
-                                <CurrentBalance />
+                                <CurrentBalance/>
                             </Col>
                         </Row>
-
+                        <Row>
+                            <Col>
+                                <div className="label-last-payments">
+                                    Последние операции:
+                                </div>
+                                <LastOperations/>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
-                <UselessButton />
+                <Row>
+                    Цели:
+                </Row>
             </Container>
         );
     }

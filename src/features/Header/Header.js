@@ -57,9 +57,9 @@ class Header extends Component{
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="/stats">Stats</Nav.Link>
+                            <Nav.Link href="/stats">Главная</Nav.Link>
                             <Nav.Link href="/operations">Операции</Nav.Link>
-                            <Nav.Link href="https://pikabu.ru">Fuck it!</Nav.Link>
+                            <Nav.Link href="#">Аналитика</Nav.Link>
                         </Nav>
                         <Nav className="justify-content-end">
                             <Nav className="me-2">

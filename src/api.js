@@ -32,8 +32,12 @@ export async function getAvailableCategories() {
     return await _get(host + `/getAvailableCategories?userId=${getSession()}`);
 }
 
-export async function getAllPaymentsWithIncomeLabel(incomeLabel) {
-    return await _get(host + `/getAllPaymentsWithIncomeLabel?userId=${getSession()}&incomeLabel=${incomeLabel}`);
+export async function getAllPaymentsForUser() {
+    return await _get(host + `/getAllPayments?userId=${getSession()}`);
+}
+
+export async function getLastPaymentsForUser(limit) {
+    return await _get(host + `/getLastPayments?userId=${getSession()}&limit=${limit}`);
 }
 
 export async function addPayment(payment) {

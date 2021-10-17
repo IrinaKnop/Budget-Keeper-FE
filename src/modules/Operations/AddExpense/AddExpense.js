@@ -19,10 +19,20 @@ class AddExpense extends Component {
                 })),
             }
         ),
+        listPayments: PropTypes.arrayOf(PropTypes.shape( {
+                userId: PropTypes.number,
+                incomeLabel: PropTypes.bool,
+                date: PropTypes.array,
+                categoryName: PropTypes.string,
+                subcategoryName: PropTypes.string,
+                value: PropTypes.number,
+            }
+        )),
         addingProcessing: PropTypes.bool,
         isAddedPayment: PropTypes.bool,
         getCategories: PropTypes.func,
         addNewPayment: PropTypes.func,
+        getAllPayments: PropTypes.func,
     }
 
     constructor(props) {
@@ -79,6 +89,13 @@ class AddExpense extends Component {
         //     subcategoryName: null,
         //     value: null,
         // }));
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {isAddedPayment} = this.props;
+        if (isAddedPayment) {
+            this.props.getAllPayments();
+        }
     }
 
     render() {

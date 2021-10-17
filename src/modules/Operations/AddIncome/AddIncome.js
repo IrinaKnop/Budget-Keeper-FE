@@ -19,6 +19,15 @@ class AddIncome extends Component {
                 })),
             }
         ),
+        listPayments: PropTypes.arrayOf(PropTypes.shape( {
+                userId: PropTypes.number,
+                incomeLabel: PropTypes.bool,
+                date: PropTypes.array,
+                categoryName: PropTypes.string,
+                subcategoryName: PropTypes.string,
+                value: PropTypes.number,
+            }
+        )),
         addingProcessing: PropTypes.bool,
         isAddedPayment: PropTypes.bool,
         getCategories: PropTypes.func,
@@ -71,10 +80,18 @@ class AddIncome extends Component {
             categoryName,
             subcategoryName,
             value
-        })
+        });
+    }
 
-        //такое очищение формы не рабтает
-        this.setState( prevState => ({
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const {isAddedPayment} = this.props;
+        if (isAddedPayment) {
+            this.props.getAllPayments();
+        }
+    }
+
+    componentWillUnmount() {
+        this.setState( () => ({
             date: null,
             categoryName: null,
             subcategoryName: null,
@@ -146,6 +163,8 @@ function mapStateToProps(state) {
     return {
         listCategories: state.payments.listCategories,
         addingProcessing: state.payments.addingProcessing,
+        listPayments: state.payments.listPayments,
+        isAddedPayment: state.payments.isAddedPayment,
     };
 }
 

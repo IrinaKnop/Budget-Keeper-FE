@@ -5,6 +5,7 @@ import AddIncome from "./AddIncome";
 import "./Operations.css"
 import AddExpense from "./AddExpense/AddExpense";
 import IncomeTable from "./IncomeTable/IncomeTable";
+import ExpenseTable from "./ExpenseTable/ExpenseTable";
 
 class Operations extends Component {
     constructor(props) {
@@ -22,40 +23,21 @@ class Operations extends Component {
                 <Row>
                     <Tabs defaultActiveKey="income" id="uncontrolled-tab-example" className="tabs-income-and-expenses">
                         <Tab eventKey="income" title="Доходы">
-                            <Accordion>
-                                <Card>
-                                    <Accordion.Toggle as={Card.Header} eventKey="0" className="tabs-card-accordion-header">
-                                        Нажмите здесь, чтобы внести доход
-                                    </Accordion.Toggle>
-                                    <Accordion.Collapse eventKey="0">
-                                        <Card.Body>
-                                            <AddIncome/>
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                            </Accordion>
+                            <p className="text-tabs-income-and-expenses">Добавить операцию с доходом</p>
                             <div>
-                                Здесь будет таблица
-                                <div>
-                                    <IncomeTable/>
-                                </div>
+                                <AddIncome/>
+                            </div>
+                            <div>
+                                <IncomeTable/>
                             </div>
                         </Tab>
                         <Tab eventKey="expenses" title="Расходы">
-                            <Accordion>
-                                <Card>
-                                    <Accordion.Toggle as={Card.Header} eventKey="1" className="tabs-card-accordion-header">
-                                        Нажмите здесь, чтобы внести расход
-                                    </Accordion.Toggle>
-                                    <Accordion.Collapse eventKey="1">
-                                        <Card.Body>
-                                            <AddExpense/>
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                            </Accordion>
+                            <p className="text-tabs-income-and-expenses">Добавить операцию с расходом</p>
                             <div>
-                                Здесь будет таблица
+                                <AddExpense/>
+                            </div>
+                            <div>
+                                <ExpenseTable/>
                             </div>
                         </Tab>
                     </Tabs>

@@ -2,6 +2,7 @@ import * as api from "../../api";
 
 const GET_AVAILABLE_CATEGORIES = 'fe-react-template/Operations/GET_AVAILABLE_CATEGORIES';
 const GET_ALL_PAYMENTS = 'fe-react-template/Operations/GET_ALL_PAYMENTS';
+const GET_LAST_PAYMENTS = 'fe-react-template/Operations/GET_LAST_PAYMENTS';
 const ADD_PAYMENT_START = 'fe-react-template/Operations/ADD_PAYMENT_START';
 const ADD_PAYMENT_FAIL = 'fe-react-template/Operations/ADD_PAYMENT_FAIL';
 const ADD_PAYMENT_SUCCESS = 'fe-react-template/Operations/ADD_PAYMENT_SUCCESS';
@@ -10,6 +11,7 @@ const ADD_PAYMENT_SUCCESS = 'fe-react-template/Operations/ADD_PAYMENT_SUCCESS';
 const initialState = {
     listCategories: null,
     listPayments: [],
+    listLastPayments: [],
     payment: null,
     addingProcessing: false,
     isAddedPayment: false,
@@ -25,7 +27,13 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_PAYMENTS:
             return {
                 ...state,
+                isAddedPayment: false,
                 listPayments: action.payload,
+            };
+        case GET_LAST_PAYMENTS:
+            return {
+                ...state,
+                listLastPayments: action.payload,
             }
         case ADD_PAYMENT_START:
             return {
@@ -59,15 +67,25 @@ export function getCategories() {
     }
 }
 
-export function getAllPayments(incomeLabel) {
+export function getAllPayments() {
     console.log("Это getAllPayments");
     return async (dispatch, getState) => {
-        const allPaymentsResult = await api.getAllPaymentsWithIncomeLabel(incomeLabel);
+        const allPaymentsResult = await api.getAllPaymentsForUser();
         console.log(allPaymentsResult);
         dispatch({
             type: GET_ALL_PAYMENTS,
             payload: allPaymentsResult.data,
         });
+    }
+}
+
+export function getLastPayments(limit) {
+    return async (dispatch, getState) => {
+        const lastPaymentsResult = await api.getLastPaymentsForUser(limit);
+        dispatch({
+            type: GET_LAST_PAYMENTS,
+            payload: lastPaymentsResult.data,
+        })
     }
 }
 

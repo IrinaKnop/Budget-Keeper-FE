@@ -1,3 +1,12 @@
 .left-panel {
-    width: 50%;
+    flex: 1 0 0%;
+}
+
+.right-half-page {
+    flex: 1 0 0%;
+}
+
+.label-last-payments {
+    text-align: left;
+    margin: 10px;
 }
