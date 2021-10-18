@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {Col, Container, Row} from "react-bootstrap";
-import UselessButton from "../../features/UselessButton/UselessButton";
 import Header from "../../features/Header/Header";
 import './Stats.css';
 import DateAndTimeNow from "./components/DateAndTimeNow";
 import CurrentBalance from "./components/CurrentBalance/CurrentBalance";
 import LastOperations from "./components/LastOperations/LastOperations";
 import DailyLimit from "./components/DailyLimit/DailyLimit";
+import DiagramExampleComponent from "./components/DiagramExampleComponent";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -27,7 +27,7 @@ class Stats extends Component {
                     <Col className="left-panel">
                         Left panel content
                         <Row>
-                            Здесь будет диаграмма
+                            <DiagramExampleComponent />
                         </Row>
                         <Row>
                             <DailyLimit/>

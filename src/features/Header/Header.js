@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 import * as loginActions from '../../modules/Auth/redux';
 import { bindActionCreators } from "redux";
-import Login from "../../modules/Auth/Login/Login";
 
 
 // READ https://react-bootstrap.netlify.app/components/navbar/#navbars
@@ -18,6 +17,7 @@ class Header extends Component{
             email: PropTypes.string,
         }),
         isLoggedIn: PropTypes.bool,
+        isAuthRequestProcessing: PropTypes.bool,
         history: PropTypes.object,
         checkAuth: PropTypes.func,
         logout: PropTypes.func,
@@ -39,12 +39,13 @@ class Header extends Component{
         this.forceUpdate();
     }
 
+    
     componentDidUpdate(prevProps, prevState) {
-        // const { isLoggedIn, history } = this.props;
-        // console.log(isLoggedIn);
-        // if (!isLoggedIn) {
-        //     history.push('/login');
-        // }
+        const { isLoggedIn, isAuthRequestProcessing, history } = this.props;
+
+        if (!isAuthRequestProcessing && !isLoggedIn) {
+            history.push('/login');
+        }
     }
 
     render() {
@@ -83,6 +84,7 @@ function mapStateToProps(state) {
     return {
         user: state.login.user,
         isLoggedIn: state.login.isLoggedIn,
+        isAuthRequestProcessing: state.login.requestProcessing,
     };
 }
 
