@@ -54,7 +54,7 @@ class Header extends Component{
         return (
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="/login">My app</Navbar.Brand>
+                    <Navbar.Brand href="/login">Budget Keeper</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

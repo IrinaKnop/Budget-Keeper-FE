@@ -1,9 +1,11 @@
 .left-panel {
     flex: 1 0 0%;
+    margin-top: 10px;
 }
 
-.right-half-page {
+.right-panel {
     flex: 1 0 0%;
+    margin-top: 10px;
 }
 
 .label-last-payments {

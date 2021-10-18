@@ -1,5 +1,6 @@
 import {Component} from "react";
 import {Col, Container, Row} from "react-bootstrap";
+import './DateAndTimeNow.css'
 
 class DateAndTimeNow extends Component {
     constructor(props) {
@@ -26,14 +27,13 @@ class DateAndTimeNow extends Component {
 
     render() {
         return (
-            <div>
+            <div className="date-and-time">
                 <Container>
                     <Row>
-                        <Col xs></Col>
-                        <Col md="auto" xs={{ order: 12 }}>
-                            {this.state.date.toLocaleDateString()}
+                        <Col xs className="date-and-time-content-date">
+                            Сегодня {this.state.date.toLocaleDateString()}
                         </Col>
-                        <Col md="auto" xs={{ order: 1 }}>
+                        <Col>
                             {this.state.date.toLocaleTimeString()}
                         </Col>
                     </Row>

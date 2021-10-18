@@ -47,13 +47,9 @@ class Stats extends Component {
                         Расходы в этом месяце:
                         <Row>
                             <DiagramCurrentMonth data = {data}/>
-                            <DiagramExampleComponent />
-                        </Row>
-                        <Row>
-                            <DailyLimit/>
                         </Row>
                     </Col>
-                    <Col className="right-half-page">
+                    <Col className="right-panel">
                         <Row>
                             <Col>
                                 <div>
@@ -71,6 +67,9 @@ class Stats extends Component {
                                 </div>
                                 <LastOperations/>
                             </Col>
+                        </Row>
+                        <Row>
+                            <DailyLimit/>
                         </Row>
                     </Col>
                 </Row>
