@@ -101,12 +101,12 @@ export function login(login, password) {
         const loginResult = await api.login(login, password);
 
         if (loginResult.success) {
+            setSession(loginResult.data.user.id);
+
             dispatch({ 
                 type: LOGIN_SUCCESS,
                 payload: _extractUser(loginResult.data.user),
             });
-
-            setSession(loginResult.data.user.id);
         } else {
             dispatch({ type: LOGIN_FAIL, payload: loginResult.errorMessage });
         }

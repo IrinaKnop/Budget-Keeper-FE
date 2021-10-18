@@ -29,7 +29,11 @@ export async function getCurrentBalance() {
 }
 
 export async function getDailyLimit() {
-    return await _get(host + `/getDailyLimit?userId=${getSession()}`)
+    return await _get(host + `/getDailyLimit?userId=${getSession()}`);
+}
+
+export async function getShortPaymentsStats() {
+    return await _get(host + `/getShortPaymentsStats?userId=${getSession()}`);
 }
 
 export async function getAvailableCategories() {

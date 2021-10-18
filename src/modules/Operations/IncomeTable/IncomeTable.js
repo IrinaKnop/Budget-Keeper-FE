@@ -42,8 +42,6 @@ class IncomeTable extends Component {
 
     render() {
         const payments = this.props.listPayments.filter(payment => payment.incomeLabel === true);
-        console.log(payments);
-        console.log(this.props);
         return (
             <Table striped bordered hover size="sm">
                 <thead>

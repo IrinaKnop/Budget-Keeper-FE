@@ -10,7 +10,7 @@ import uselessButton from './features/UselessButton/redux';
 import initializeBalance from './modules/InitialBalance/redux'
 import currentBalance from "./modules/Stats/components/CurrentBalance/redux";
 import payments from "./modules/Operations/redux";
-import dailyLimitNow from "./modules/Stats/components/DailyLimit/redux"
+import dailyLimitNow from "./modules/Stats/components/DailyLimit/redux";
 
 
 function configureStore() {

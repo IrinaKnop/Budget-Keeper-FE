@@ -7,6 +7,7 @@ import CurrentBalance from "./components/CurrentBalance/CurrentBalance";
 import LastOperations from "./components/LastOperations/LastOperations";
 import DailyLimit from "./components/DailyLimit/DailyLimit";
 import DiagramExampleComponent from "./components/DiagramExampleComponent";
+import DiagramCurrentMonth from "./components/DiagramCurrentMonth";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -27,6 +28,7 @@ class Stats extends Component {
                     <Col className="left-panel">
                         Left panel content
                         <Row>
+                            <DiagramCurrentMonth />
                             <DiagramExampleComponent />
                         </Row>
                         <Row>
