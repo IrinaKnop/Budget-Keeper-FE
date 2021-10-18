@@ -1,7 +1,7 @@
 import {Component} from "react";
 import './DailyLimit.css';
 import PropTypes from "prop-types";
-import * as dailyLimitActions from './redux';
+import * as dailyLimitActions from '../../redux';
 import {bindActionCreators} from 'redux';
 import {connect} from "react-redux";
 
@@ -31,7 +31,7 @@ class DailyLimit extends Component {
 
 function mapStateToProps(state) {
     return {
-        dailyLimit: state.dailyLimitNow.dailyLimit,
+        dailyLimit: state.shortStats.dailyLimit,
     };
 }
 

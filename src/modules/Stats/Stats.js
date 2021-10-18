@@ -8,15 +8,33 @@ import LastOperations from "./components/LastOperations/LastOperations";
 import DailyLimit from "./components/DailyLimit/DailyLimit";
 import DiagramExampleComponent from "./components/DiagramExampleComponent";
 import DiagramCurrentMonth from "./components/DiagramCurrentMonth";
+import * as statsActions from "./redux";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import PropTypes from "prop-types";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
 class Stats extends Component {
+    static propTypes = {
+        listPaymentsShortStats: PropTypes.arrayOf(PropTypes.shape( {
+            category: PropTypes.string,
+            value: PropTypes.number
+        }
+        )),
+        getShortPaymentsStats: PropTypes.func,
+    }
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+        this.props.getShortPaymentsStats();
+    }
+
     render() {
+        const data = this.props.listPaymentsShortStats;
+        console.log(data);
         return (
             <Container>
                 <Row>
@@ -26,9 +44,9 @@ class Stats extends Component {
                 </Row>
                 <Row>
                     <Col className="left-panel">
-                        Left panel content
+                        Расходы в этом месяце:
                         <Row>
-                            <DiagramCurrentMonth />
+                            <DiagramCurrentMonth data = {data}/>
                             <DiagramExampleComponent />
                         </Row>
                         <Row>
@@ -36,7 +54,6 @@ class Stats extends Component {
                         </Row>
                     </Col>
                     <Col className="right-half-page">
-                        Stats page main content
                         <Row>
                             <Col>
                                 <div>
@@ -65,4 +82,14 @@ class Stats extends Component {
     }
 }
 
-export default Stats;
+function mapStateToProps(state) {
+    return {
+        listPaymentsShortStats: state.shortStats.listPaymentsShortStats,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(statsActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stats);
