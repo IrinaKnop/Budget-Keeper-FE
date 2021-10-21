@@ -50,7 +50,7 @@ class LastOperations extends Component {
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{payment.incomeLabel ? "Доход" : "Расход"}</td>
-                                <td>{payment.value}</td>
+                                <td>{payment.value.toLocaleString('ru-RU')}</td>
                                 <td>{payment.categoryName}</td>
                                 <td>{payment.subcategoryName}</td>
                                 <td>{payment.date}</td>

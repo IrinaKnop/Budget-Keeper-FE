@@ -58,7 +58,7 @@ class IncomeTable extends Component {
                     payments && payments.map((payment, index) =>
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>{payment.value}</td>
+                                <td>{payment.value.toLocaleString('ru-RU')}</td>
                                 <td>{payment.categoryName}</td>
                                 <td>{payment.subcategoryName}</td>
                                 <td>{payment.date}</td>
