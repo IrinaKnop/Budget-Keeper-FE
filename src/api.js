@@ -32,6 +32,14 @@ export async function getDailyLimit() {
     return await _get(host + `/getDailyLimit?userId=${getSession()}`);
 }
 
+export async function getAllPlans() {
+    return await _get(host + `/getAllPlans?userId=${getSession()}`);
+}
+
+export async function addPlan(plan){
+    return await _post(host + "/addPlan", plan);
+}
+
 export async function getShortPaymentsStats() {
     return await _get(host + `/getShortPaymentsStats?userId=${getSession()}`);
 }

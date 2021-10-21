@@ -1,13 +1,64 @@
+.close ::before{
+    content: 'x';
+    visibility: visible;
+    color: black;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.sr-only::before{
+    visibility: hidden;
+}
+
+.close{
+    /*background-color: red; */
+    visibility: hidden;
+    position: absolute;
+    right: 32px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(247, 12, 12);
+}
+
+.plans-col {
+    width: 200px;
+}
+
 .card-plans {
     margin-top: 1rem;
+    margin-right: 1rem;
     width: 200px;
-    height: 180px;
+    height: 200px;
+    text-align: left;
+    background-color: #f8f9fa;
+}
+
+.card-plans-body {
+    font-size: 90%;
+}
+
+.card-plans-title {
+    font-size: 110%;
+}
+
+.card-plans-headline {
+    margin-bottom: 0;
+}
+
+.card-plans-button {
+    margin-top: 1rem;
+    margin-right: 1rem;
+    width: 200px;
+    height: 200px;
     align-items: center;
+    background-color: #f8f9fa;
 }
 
 .button-add-plans {
     width: 198px;
-    height: 178px;
+    height: 198px;
+    margin-left: 0;
     line-height: 90px;
     font-size: 500%;
     color: grey;
