@@ -104,8 +104,8 @@ class AddExpense extends Component {
             .map(category => category.name);
 
         const subCategoriesNames = this.props.listCategories?.expensesList
-            .filter(subcategory => subcategory.name === categoryName)
-            .flatMap(subcategory => subcategory.listSubcategories)
+            .filter(category => category.name === categoryName)
+            .flatMap(category => category.listSubcategories)
             .map(subCategory => subCategory.name);
 
         return (

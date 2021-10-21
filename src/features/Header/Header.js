@@ -54,13 +54,13 @@ class Header extends Component{
         return (
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand href="/login">Budget Keeper</Navbar.Brand>
+                    <Navbar.Brand href="/stats">Budget Keeper</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/stats">Главная</Nav.Link>
                             <Nav.Link href="/operations">Операции</Nav.Link>
-                            <Nav.Link href="#">Аналитика</Nav.Link>
+                            <Nav.Link href="/analytics">Аналитика</Nav.Link>
                         </Nav>
                         <Nav className="justify-content-end">
                             <Nav className="me-2">

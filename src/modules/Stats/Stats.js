@@ -6,12 +6,12 @@ import DateAndTimeNow from "./components/DateAndTimeNow";
 import CurrentBalance from "./components/CurrentBalance/CurrentBalance";
 import LastOperations from "./components/LastOperations/LastOperations";
 import DailyLimit from "./components/DailyLimit/DailyLimit";
-import DiagramExampleComponent from "./components/DiagramExampleComponent";
 import DiagramCurrentMonth from "./components/DiagramCurrentMonth";
 import * as statsActions from "./redux";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import Plans from "./components/Plans";
 
 // READ https://react-bootstrap.netlify.app/layout/grid/#grid
 
@@ -20,8 +20,7 @@ class Stats extends Component {
         listPaymentsShortStats: PropTypes.arrayOf(PropTypes.shape( {
             category: PropTypes.string,
             value: PropTypes.number
-        }
-        )),
+        })),
         getShortPaymentsStats: PropTypes.func,
     }
     constructor(props) {
@@ -75,6 +74,9 @@ class Stats extends Component {
                 </Row>
                 <Row>
                     Цели:
+                </Row>
+                <Row>
+                    <Plans/>
                 </Row>
             </Container>
         );

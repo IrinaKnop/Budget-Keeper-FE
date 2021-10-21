@@ -52,6 +52,22 @@ export async function addPayment(payment) {
     return await _post(host + "/addPayment", payment);
 }
 
+export async function getAllCategoriesByPeriod(dateStart, dateEnd) {
+    return await _get(host + `/getAllCategoriesByPeriod?userId=${getSession()}&dateStart=${dateStart}&dateEnd=${dateEnd}`);
+}
+
+export async function getPaymentsStatsByPeriod(analyticStatsDto) {
+    return await _post(host + "/getPaymentsStatsByPeriod", analyticStatsDto);
+}
+
+export async function getSubcategoryStatsByPeriod(analyticStatsByCategoryDto) {
+    return await _post(host + "/getSubcategoryStatsByPeriod", analyticStatsByCategoryDto);
+}
+
+export async function getGraphStats(dateStart, dateEnd) {
+    return await _get(host + `/getGraphStats?userId=${getSession()}&dateStart=${dateStart}&dateEnd=${dateEnd}`);
+}
+
 async function _get(url) {
     //host + `?userId=${getSession()}`
     const response = await axios.get(url, config);

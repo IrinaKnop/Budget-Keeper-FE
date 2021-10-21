@@ -10,6 +10,7 @@ import {
 import Registration from "./modules/Auth/Registration";
 import InitialBalance from "./modules/InitialBalance/InitialBalance";
 import Operations from "./modules/Operations";
+import Analytics from "./modules/Analytics/Analytics";
 
 // READ https://reactrouter.com/web/guides/quick-start
 
@@ -35,6 +36,9 @@ function createRouter() {
 
                 <Route path="/operations">
                     <Operations />
+                </Route>
+                <Route path="/analytics">
+                    <Analytics />
                 </Route>
 
                 <Route

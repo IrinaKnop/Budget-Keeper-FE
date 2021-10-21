@@ -1,0 +1,29 @@
+.analytics {
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.analytics-form {
+    display: flex;
+    width: 100%;
+}
+
+.analytics-form-group {
+    margin: 5px;
+    position: relative;
+}
+
+.analytics-form-group-text {
+    text-align: right;
+    padding-top: 8px;
+}
+
+.analytics-error-message {
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: red;
+}

@@ -1,0 +1,17 @@
+.card-plans {
+    margin-top: 1rem;
+    width: 200px;
+    height: 180px;
+    align-items: center;
+}
+
+.button-add-plans {
+    width: 198px;
+    height: 178px;
+    line-height: 90px;
+    font-size: 500%;
+    color: grey;
+    text-align: center;
+    vertical-align: center;
+    dominant-baseline: middle;
+}

@@ -11,6 +11,7 @@ import initializeBalance from './modules/InitialBalance/redux'
 import currentBalance from "./modules/Stats/components/CurrentBalance/redux";
 import payments from "./modules/Operations/redux";
 import shortStats from "./modules/Stats/redux";
+import analytics from "./modules/Analytics/redux";
 
 
 function configureStore() {
@@ -25,6 +26,7 @@ function configureStore() {
         currentBalance,
         payments,
         shortStats,
+        analytics,
     });
 
     return createStore(
