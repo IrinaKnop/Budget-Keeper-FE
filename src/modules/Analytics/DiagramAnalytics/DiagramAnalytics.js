@@ -34,6 +34,17 @@ const renderCustomizedLabel = ({
     );
 };
 
+const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+        return (
+            <div className="custom-tooltip">
+                <p className="label">{payload[0] ? `${payload[0].name}: ${payload[0].value.toLocaleString('ru-RU')}` : null}</p>
+            </div>
+        );
+    }
+    return null;
+}
+
 PieChart.propTypes = {
     height: PropTypes.number,
     width: PropTypes.number,
@@ -61,7 +72,7 @@ export default function DiagramAnalytics(props) {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
             </Pie>
-            <Tooltip/>
+            <Tooltip content={<CustomTooltip />} />
             <Legend/>
         </PieChart>
     )

@@ -1,6 +1,7 @@
 import * as api from "../../../../api";
 import {PieChart, Pie, Legend, Tooltip, Cell} from 'recharts';
 import PropTypes from "prop-types";
+import React from "react";
 
 const COLORS = ["#99CCCC", "#66CCCC", "#339999",
     "#669999", "#006666", "#00CCCC", "#009999",
@@ -34,6 +35,17 @@ const renderCustomizedLabel = ({
     );
 };
 
+const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+        return (
+            <div className="custom-tooltip">
+                <p className="label">{payload[0] ? `${payload[0].name}: ${payload[0].value.toLocaleString('ru-RU')}` : null}</p>
+            </div>
+        );
+    }
+    return null;
+}
+
 export default function DiagramCurrentMonth(props) {
     const data = props.data;
 
@@ -55,7 +67,7 @@ export default function DiagramCurrentMonth(props) {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
             </Pie>
-            <Tooltip/>
+            <Tooltip content={<CustomTooltip />} />
             <Legend/>
         </PieChart>
     )

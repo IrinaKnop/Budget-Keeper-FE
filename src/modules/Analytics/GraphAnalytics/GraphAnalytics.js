@@ -11,12 +11,25 @@ export default function GraphAnalytics(props) {
     }));
     console.log(dataRename);
 
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="custom-tooltip">
+                    <p className="label">{payload[0] ? `${payload[0].name}: ${payload[0].value.toLocaleString('ru-RU')}` : null}</p>
+                    <p className="label">{payload[1] ? `${payload[1].name}: ${payload[1].value.toLocaleString('ru-RU')}` : null}</p>
+                </div>
+            );
+        }
+
+        return null;
+    }
+
     return (
         <LineChart width={600} height={430} data={dataRename}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />}  />
             <Legend />
             <Line connectNulls type="monotone" dataKey="Доходы" stroke="#82ca9d" />
             <Line connectNulls type="monotone" dataKey="Расходы" stroke="#006666" />
