@@ -111,7 +111,7 @@ class Analytics extends Component {
                         dateEnd
                     });
                 }
-            this.props.getGraphStatsByPeriod(dateStart, dateEnd);
+                this.props.getGraphStatsByPeriod(dateStart, dateEnd);
             }
         },
         500,);
@@ -136,9 +136,7 @@ class Analytics extends Component {
         const data = this.props.listPaymentsAnalytics;
         const dataGraph = this.props.listGraphAnalytics;
         const listCategories = this.props.listCategories;
-        // console.log("BOT OH " + listCategories.map(c => c.incomeLabel));
-        // console.log("BOT OH " + listCategories.map(c => typeof c.incomeLabel));
-        // console.log("ВОТ ОН " + listCategories.filter(category => category.incomeLabel === incomeLabel));
+        const total = data.reduce((prev,next) => prev + next.value, 0);
 
         return (
             <Container>
@@ -211,10 +209,26 @@ class Analytics extends Component {
                 )}
                 <Row>
                     <Col>
-                        <DiagramAnalytics data={data}/>
+                        <Row>
+                            {data && (
+                                <p className="analytics-text">
+                                    Общая сумма: {total.toLocaleString('ru-RU')} руб.
+                                </p>
+                            )}
+                        </Row>
+                        <Row>
+                            <DiagramAnalytics data={data}/>
+                        </Row>
                     </Col>
                     <Col>
+                        <Row>
+                            <p className="analytics-text">
+                                Общие суммы доходов и расходов:
+                            </p>
+                        </Row>
+                        <Row>
                         <GraphAnalytics data={dataGraph}/>
+                        </Row>
                     </Col>
                 </Row>
             </Container>

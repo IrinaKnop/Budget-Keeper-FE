@@ -9,9 +9,8 @@ export default function GraphAnalytics(props) {
         Доходы: item.income,
         Расходы: item.expense,
     }));
-    console.log(dataRename);
 
-    const CustomTooltip = ({ active, payload }) => {
+    const CustomTooltipGraph = ({ active, payload }) => {
         if (active && payload && payload.length) {
             return (
                 <div className="custom-tooltip">
@@ -25,11 +24,11 @@ export default function GraphAnalytics(props) {
     }
 
     return (
-        <LineChart width={600} height={430} data={dataRename}>
+        <LineChart width={570} height={430} data={dataRename}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip content={<CustomTooltip />}  />
+            <Tooltip content={<CustomTooltipGraph />}  />
             <Legend />
             <Line connectNulls type="monotone" dataKey="Доходы" stroke="#82ca9d" />
             <Line connectNulls type="monotone" dataKey="Расходы" stroke="#006666" />

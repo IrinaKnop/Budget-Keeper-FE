@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {PieChart, Pie, Legend, Tooltip, Cell} from 'recharts';
+import {ResponsiveContainer, PieChart, Pie, Legend, Tooltip, Cell} from 'recharts';
 
 const COLORS = ["#99CCCC", "#66CCCC", "#339999",
     "#669999", "#006666", "#00CCCC", "#009999",
@@ -34,7 +34,7 @@ const renderCustomizedLabel = ({
     );
 };
 
-const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({active, payload}) => {
     if (active && payload && payload.length) {
         return (
             <div className="custom-tooltip">
@@ -45,36 +45,31 @@ const CustomTooltip = ({ active, payload }) => {
     return null;
 }
 
-PieChart.propTypes = {
-    height: PropTypes.number,
-    width: PropTypes.number,
-    children: PropTypes.node
-};
-
 export default function DiagramAnalytics(props) {
     const data = props.data;
 
     return (
-        <PieChart width={650} height={430}>
-            <Pie
-                nameKey="category"
-                dataKey="value"
-                data={data}
-                cx="50%"
-                cy="50%"
-                innerRadius={90}
-                outerRadius={120}
-                fill="#82ca9d"
-                labelLine={true}
-                label={renderCustomizedLabel}
-            >
-                {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-            </Pie>
-            <Tooltip content={<CustomTooltip />} />
-            <Legend/>
-        </PieChart>
+            <PieChart width={650} height={430}>
+                <Pie
+                    nameKey="category"
+                    dataKey="value"
+                    data={data}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={90}
+                    outerRadius={120}
+                    fill="#82ca9d"
+                    label={renderCustomizedLabel}
+                    labelLine={true}
+                    isAnimationActive="true"
+                >
+                    {data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
+                    ))}
+                </Pie>
+                <Tooltip content={CustomTooltip}/>
+                <Legend/>
+            </PieChart>
     )
 }
 
