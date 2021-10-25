@@ -6,10 +6,17 @@ const GET_LAST_PAYMENTS = 'fe-react-template/Operations/GET_LAST_PAYMENTS';
 const ADD_PAYMENT_START = 'fe-react-template/Operations/ADD_PAYMENT_START';
 const ADD_PAYMENT_FAIL = 'fe-react-template/Operations/ADD_PAYMENT_FAIL';
 const ADD_PAYMENT_SUCCESS = 'fe-react-template/Operations/ADD_PAYMENT_SUCCESS';
-
+const DELETE_PAYMENT_FAIL = 'fe-react-template/Operations/DELETE_PAYMENT_FAIL';
+const DELETE_PAYMENT_SUCCESS = 'fe-react-template/Operations/DELETE_PAYMENT_SUCCESS';
+const ADD_CATEGORY_FAIL = 'fe-react-template/Operations/ADD_CATEGORY_FAIL';
+const ADD_CATEGORY_SUCCESS = 'fe-react-template/Operations/ADD_CATEGORY_SUCCESS';
+const ADD_SUBCATEGORY_FAIL = 'fe-react-template/Operations/ADD_SUBCATEGORY_FAIL';
+const ADD_SUBCATEGORY_SUCCESS = 'fe-react-template/Operations/ADD_SUBCATEGORY_SUCCESS';
 
 const initialState = {
     listCategories: null,
+    newCategory: null,
+    newSubcategory: null,
     listPayments: [],
     listLastPayments: [],
     addingProcessing: false,
@@ -47,6 +54,33 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 addingProcessing: false,
                 listPayments: action.payload,
+            };
+        case DELETE_PAYMENT_FAIL:
+            return {
+                ...state
+            };
+        case DELETE_PAYMENT_SUCCESS:
+            return {
+                ...state,
+                listPayments: action.payload,
+            };
+        case ADD_CATEGORY_FAIL:
+            return {
+                ...state,
+            }
+        case ADD_CATEGORY_SUCCESS:
+            return {
+                ...state,
+                newCategory: action.payload
+            }
+        case ADD_SUBCATEGORY_FAIL:
+            return {
+                ...state,
+            }
+        case ADD_SUBCATEGORY_SUCCESS:
+            return {
+                ...state,
+                newSubcategory: action.payload
             }
         default:
             return state;
@@ -86,9 +120,8 @@ export function getLastPayments(limit) {
 }
 
 export function addNewPayment(payment) {
-    console.log("redux addNewPayment");
     return async (dispatch, getState) => {
-        dispatch({ type: ADD_PAYMENT_START });
+        dispatch({type: ADD_PAYMENT_START});
 
         const paymentResult = await api.addPayment(payment)
 
@@ -97,9 +130,51 @@ export function addNewPayment(payment) {
                 type: ADD_PAYMENT_SUCCESS,
                 payload: [paymentResult.data, ...getState().payments.listPayments],
             });
+        } else {
+            dispatch({type: ADD_PAYMENT_FAIL});
         }
-        else {
-            dispatch({ type: ADD_PAYMENT_FAIL });
+    }
+}
+
+export function deletePayment(payment) {
+    return async (dispatch, getState) => {
+        const paymentDeleteResult = await api.deletePayment(payment);
+
+        if (paymentDeleteResult.success) {
+            dispatch({
+                type: DELETE_PAYMENT_SUCCESS,
+                payload: [...getState().payments.listPayments.filter(item => item.id !== payment.id)],
+            });
+        } else {
+            dispatch({type: DELETE_PAYMENT_FAIL});
+        }
+    }
+}
+
+export function addNewCategory(categoryDto) {
+    return async (dispatch, getState) => {
+        const categoryResult = await api.addCategory(categoryDto);
+        if (categoryResult.success) {
+            dispatch({
+                type: ADD_CATEGORY_SUCCESS,
+                payload: categoryResult.data
+            });
+        } else {
+            dispatch({type: ADD_CATEGORY_FAIL});
+        }
+    }
+}
+
+export function addNewSubcategory(subcategoryDto) {
+    return async (dispatch, getState) => {
+        const subcategoryResult = await api.addSubcategory(subcategoryDto);
+        if (subcategoryResult.success) {
+            dispatch({
+                type: ADD_SUBCATEGORY_SUCCESS,
+                payload: subcategoryResult.data
+            });
+        } else {
+            dispatch({type: ADD_SUBCATEGORY_FAIL});
         }
     }
 }

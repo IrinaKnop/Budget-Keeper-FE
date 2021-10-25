@@ -48,6 +48,14 @@ export async function getAvailableCategories() {
     return await _get(host + `/getAvailableCategories?userId=${getSession()}`);
 }
 
+export async function addCategory(categoryDto) {
+    return await _post(host + "/addCategory", categoryDto);
+}
+
+export async function addSubcategory(subcategoryDto) {
+    return await _post(host + "/addSubcategory", subcategoryDto);
+}
+
 export async function getAllPaymentsForUser() {
     return await _get(host + `/getAllPayments?userId=${getSession()}`);
 }
@@ -58,6 +66,10 @@ export async function getLastPaymentsForUser(limit) {
 
 export async function addPayment(payment) {
     return await _post(host + "/addPayment", payment);
+}
+
+export async function deletePayment(payment) {
+    return await _post(host + "/deletePayment", payment);
 }
 
 export async function getAllCategoriesByPeriod(dateStart, dateEnd) {
@@ -87,6 +99,16 @@ async function _post(url, postData = {}, withAuth = true) {
     const requestData = withAuth ? { ...postData, userId: getSession() } : postData;
 
     const response = await axios.post(url, requestData, config);
+
+    return _checkAndWrapResponse(response);
+}
+
+async function _delete(url, postData = {}, withAuth = true) {
+    const requestData = withAuth ? { ...postData, userId: getSession() } : postData;
+
+    console.log("DATADATADATA")
+    console.log(requestData)
+    const response = await axios.delete(url, requestData, config);
 
     return _checkAndWrapResponse(response);
 }

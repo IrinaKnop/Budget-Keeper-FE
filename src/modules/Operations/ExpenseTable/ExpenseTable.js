@@ -1,9 +1,9 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {bindActionCreators} from "redux";
 import * as operationsActions from "../redux";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {Table} from "react-bootstrap";
+import {Button, Table} from "react-bootstrap";
 
 class ExpenseTable extends Component {
     static propTypes = {
@@ -17,6 +17,7 @@ class ExpenseTable extends Component {
             }
         )),
         getAllPayments: PropTypes.func,
+        deletePayment: PropTypes.func,
     }
 
     constructor(props) {
@@ -31,6 +32,12 @@ class ExpenseTable extends Component {
         this.props.getAllPayments();
         console.log(this.props);
         this.forceUpdate();
+    }
+
+    onClickDeleteRow = (paymentId) => {
+        this.props.deletePayment({
+            id: paymentId,
+        });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -64,6 +71,14 @@ class ExpenseTable extends Component {
                             <td>{payment.categoryName}</td>
                             <td>{payment.subcategoryName}</td>
                             <td>{payment.date}</td>
+                            <td>
+                                <Button
+                                    variant="outline-danger"
+                                    onClick={() => this.onClickDeleteRow(payment.id)}
+                                >
+                                    Удалить
+                                </Button>
+                            </td>
                         </tr>
                     )
                 }

@@ -46,6 +46,12 @@ const CustomTooltip = ({ active, payload }) => {
     return null;
 }
 
+PieChart.propTypes = {
+    height: PropTypes.number,
+    width: PropTypes.number,
+    children: PropTypes.node
+};
+
 export default function DiagramCurrentMonth(props) {
     const data = props.data;
 
