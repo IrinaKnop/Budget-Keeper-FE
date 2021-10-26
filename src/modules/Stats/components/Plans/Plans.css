@@ -22,7 +22,7 @@
 }
 
 .plans-col {
-    width: 200px;
+    max-width: 220px;
 }
 
 .card-plans {

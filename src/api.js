@@ -40,6 +40,14 @@ export async function addPlan(plan){
     return await _post(host + "/addPlan", plan);
 }
 
+export async function editPlan(plan) {
+    return await _post(host + "/editPlan", plan);
+}
+
+export async function deletePlan(plan) {
+    return await _post(host + "/deletePlan", plan);
+}
+
 export async function getShortPaymentsStats() {
     return await _get(host + `/getShortPaymentsStats?userId=${getSession()}`);
 }
