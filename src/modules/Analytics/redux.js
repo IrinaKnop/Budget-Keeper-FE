@@ -4,11 +4,13 @@ const GET_ALL_CATEGORIES_BY_PERIOD = 'fe-react-template/Analytics/GET_ALL_CATEGO
 const GET_PAYMENTS_STATS_BY_PERIOD = 'fe-react-template/Analytics/GET_PAYMENTS_STATS_BY_PERIOD';
 const GET_SUBCATEGORY_STATS_BY_PERIOD = 'fe-react-template/Analytics/GET_SUBCATEGORY_STATS_BY_PERIOD';
 const GET_GRAPH_STATS_BY_PERIOD = 'fe-react-template/Analytics/GET_GRAPH_STATS_BY_PERIOD';
+const GET_USELESS_PAYMENTS = 'fe-react-template/Analytics/GET_USELESS_PAYMENTS';
 
 const initialState = {
     listCategories: [],
     listPaymentsAnalytics: [],
     listGraphAnalytics: [],
+    listUselessPayments: [],
 }
 
 export default function reducer(state = initialState, action) {
@@ -33,10 +35,14 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 listGraphAnalytics: action.payload,
             };
+        case GET_USELESS_PAYMENTS:
+            return {
+                ...state,
+                listUselessPayments: action.payload,
+            }
         default:
             return state;
     }
-
 }
 
 export function getAllCategoriesByPeriod(dateStart, dateEnd) {
@@ -75,6 +81,16 @@ export function getGraphStatsByPeriod(dateStart, dateEnd) {
         dispatch({
             type: GET_GRAPH_STATS_BY_PERIOD,
             payload: graphStatsResult.data,
+        })
+    }
+}
+
+export function getUselessPayments(dateStart, dateEnd) {
+    return async (dispatch, getState) => {
+        const uselessPaymentsResult = await api.getUselessPayments(dateStart, dateEnd);
+        dispatch({
+            type: GET_USELESS_PAYMENTS,
+            payload: uselessPaymentsResult.data,
         })
     }
 }

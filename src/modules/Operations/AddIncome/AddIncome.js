@@ -167,11 +167,10 @@ class AddIncome extends Component {
             this.setState({addingCategoryErrorMessage: "Слишком короткое название"});
         }
 
-        const {uselessType, incomeLabel, listSubcategories} = this.state;
-        console.log(categoryFormat, uselessType, incomeLabel);
+        const {incomeLabel, listSubcategories} = this.state;
         this.props.addNewCategory({
             name: categoryFormat,
-            uselessType,
+            uselessType: false,
             incomeLabel,
             listSubcategories
         });
@@ -195,13 +194,12 @@ class AddIncome extends Component {
             this.setState({addingSubcategoryErrorMessage: "Слишком короткое название"});
         }
 
-        const {categoryName, uselessType, incomeLabel} = this.state;
-        console.log(subcategoryFormat, uselessType, incomeLabel);
+        const {categoryName, incomeLabel} = this.state;
 
         this.props.addNewSubcategory({
             categoryName,
             name: subcategoryFormat,
-            uselessType,
+            uselessType: false,
             incomeLabel
         });
 

@@ -9,6 +9,7 @@ import Header from "../../features/Header/Header";
 import DiagramAnalytics from "./DiagramAnalytics";
 import {debounce} from "debounce";
 import GraphAnalytics from "./GraphAnalytics";
+import UselessExpenses from "./UselessExpenses";
 
 class Analytics extends Component {
     static propTypes = {
@@ -231,6 +232,9 @@ class Analytics extends Component {
                         <GraphAnalytics data={dataGraph}/>
                         </Row>
                     </Col>
+                </Row>
+                <Row>
+                    <UselessExpenses dateStart={dateStart} dateEnd={dateEnd}/>
                 </Row>
             </Container>
         )

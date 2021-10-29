@@ -98,12 +98,13 @@ class AddExpense extends Component {
     }
 
     onUselessTypeCategoryChange = (event) => {
-        this.setState({uselessType: !this.state.uselessType})
+        this.setState({uselessType: !this.state.uselessType});
+        console.log(this.state.uselessType)
     }
 
     onSubcategoryChange = (event) => {
         if (event.target.value === "Добавить подкатегорию") {
-            this.setState({showAddSubcategory: true})
+            this.setState({showAddSubcategory: true});
             if (this.props.newSubcategory) {
                 this.setState({subcategoryName: this.props.newSubcategory.name});
             }
@@ -113,7 +114,9 @@ class AddExpense extends Component {
     }
 
     onUselessTypeSubcategoryChange = (event) => {
-        this.setState({uselessType: !this.state.uselessType})
+        this.setState({uselessType: !this.state.uselessType});
+        console.log(this.state.uselessType)
+
     }
 
     onAddingSubcategoryChange = (event) => {
@@ -140,6 +143,7 @@ class AddExpense extends Component {
         event.stopPropagation();
 
         const {incomeLabel, date, categoryName, subcategoryName, value} = this.state;
+        console.log(this.state);
 
         this.props.addNewPayment({
             incomeLabel,
@@ -186,6 +190,7 @@ class AddExpense extends Component {
         this.setState({
             categoryName: categoryFormat,
             showAddCategory: false,
+            uselessType: false,
         });
     }
 
@@ -216,6 +221,7 @@ class AddExpense extends Component {
         this.setState({
             subcategoryName: subcategoryFormat,
             showAddSubcategory: false,
+            uselessType: false,
         });
     }
 

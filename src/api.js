@@ -96,6 +96,10 @@ export async function getGraphStats(dateStart, dateEnd) {
     return await _get(host + `/getGraphStats?userId=${getSession()}&dateStart=${dateStart}&dateEnd=${dateEnd}`);
 }
 
+export async function getUselessPayments(dateStart, dateEnd) {
+    return await _get(host + `/getUselessPayments?userId=${getSession()}&dateStart=${dateStart}&dateEnd=${dateEnd}`);
+}
+
 async function _get(url) {
     //host + `?userId=${getSession()}`
     const response = await axios.get(url, config);

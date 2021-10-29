@@ -1,0 +1,17 @@
+.useless-expenses {
+    margin-top: 10px;
+    text-align: left;
+    align-items: center;
+    display: inline-block;
+}
+
+.useless-expenses-header {
+    margin-bottom: 10px;
+}
+
+.useless-expenses-text {
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
