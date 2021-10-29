@@ -28,8 +28,6 @@ class AddIncome extends Component {
                 value: PropTypes.number,
             }
         )),
-        newCategory: PropTypes.object,
-        newSubcategory: PropTypes.object,
         addingProcessing: PropTypes.bool,
         isAddedPayment: PropTypes.bool,
         getCategories: PropTypes.func,
@@ -143,14 +141,16 @@ class AddIncome extends Component {
             value
         });
 
-        this.props.getCategories();
-
         this.setState({
             date: "",
             categoryName: "",
             subcategoryName: "",
             value: "",
+            addingCategoryName:"",
+            addingSubcategoryName:"",
         });
+
+        this.props.getCategories();
     }
 
     onSubmitCategoryForm = (event) => {
@@ -177,7 +177,6 @@ class AddIncome extends Component {
         });
         this.setState({
             categoryName: categoryFormat,
-            addingCategoryName:"",
             showAddCategory: false,
         });
     }
@@ -208,17 +207,9 @@ class AddIncome extends Component {
 
         this.setState({
             subcategoryName: subcategoryFormat,
-            addingSubcategoryName:"",
             showAddSubcategory: false,
         });
     }
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     const {isAddedPayment} = this.props;
-    //     if (isAddedPayment) {
-    //         this.props.getAllPayments();
-    //     }
-    // }
 
     render() {
         const {
@@ -255,8 +246,8 @@ class AddIncome extends Component {
                                     .map((value, i) => <option key={i} value={value}>{value}</option>)
                             }
                             {
-                                newCategory && (
-                                    <option value={newCategory.name}>{newCategory.name}</option>
+                                addingCategoryName && (
+                                    <option value={addingCategoryName}>{addingCategoryName}</option>
                                 )
                             }
                             <option>Добавить категорию</option>
@@ -272,8 +263,8 @@ class AddIncome extends Component {
                                     .map((value, i) => <option key={i} value={value}>{value}</option>)
                             }
                             {
-                                newSubcategory && (
-                                    <option value={newSubcategory.name}>{newSubcategory.name}</option>
+                                addingSubcategoryName && categoryName != null && categoryName !== "" &&(
+                                    <option value={addingSubcategoryName}>{addingSubcategoryName}</option>
                                 )
                             }
                             {
@@ -374,8 +365,6 @@ function mapStateToProps(state) {
         addingProcessing: state.payments.addingProcessing,
         listPayments: state.payments.listPayments,
         isAddedPayment: state.payments.isAddedPayment,
-        newCategory: state.payments.newCategory,
-        newSubcategory: state.payments.newSubcategory,
     };
 }
 

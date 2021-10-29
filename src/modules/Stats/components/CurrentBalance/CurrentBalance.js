@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import * as currentBalanceActions from './redux';
 import {bindActionCreators} from 'redux';
 import {connect} from "react-redux";
+import './CurrentBalance.css';
 
 class CurrentBalance extends Component {
     static propTypes = {
@@ -18,9 +19,15 @@ class CurrentBalance extends Component {
         const {finalBalance} = this.props;
         return (
             <div>
-                {finalBalance != null && (
+                { finalBalance && finalBalance < 0 && (
+                    <div className="error-balance">
+                        Текущий баланс: {finalBalance.toLocaleString("ru-RU")} руб.
+                    </div>
+                )}
+
+                {finalBalance != null && finalBalance >= 0 && (
                     <div>
-                    Текущий баланс: {finalBalance} руб.
+                    Текущий баланс: {finalBalance.toLocaleString("ru-RU")} руб.
                     </div>
                 )}
             </div>

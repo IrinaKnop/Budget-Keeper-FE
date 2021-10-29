@@ -7,3 +7,11 @@
 .table-last-payments {
     width: 100%;
 }
+
+.table-col-income {
+    background-color: #CCFFCC !important;
+}
+
+.table-col-expense {
+    background-color: #FFCCCC !important;
+}

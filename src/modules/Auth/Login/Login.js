@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import {Form, Button, Spinner} from "react-bootstrap";
-import { withRouter } from "react-router-dom";
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {withRouter} from "react-router-dom";
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import * as loginActions from '../redux';
 import './Login.css'
 import UselessButton from "../../../features/UselessButton/UselessButton";
@@ -45,9 +45,9 @@ class Login extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        event.stopPropagation();        
+        event.stopPropagation();
 
-        const { login, password } = this.state;
+        const {login, password} = this.state;
 
         this.props.login(login, password);
     }
@@ -58,7 +58,7 @@ class Login extends Component {
 
     // READ https://blog.logrocket.com/react-lifecycle-methods-tutorial-examples/
     componentDidUpdate(prevProps, prevState) {
-        const { isLoggedIn, history } = this.props;
+        const {isLoggedIn, history} = this.props;
 
         if (isLoggedIn) {
             history.push('/stats');
@@ -66,44 +66,44 @@ class Login extends Component {
     }
 
     render() {
-        const { login, password, formValid } = this.state;
-        const { requestErrorMessage, requestProcessing } = this.props;
+        const {login, password, formValid} = this.state;
+        const {requestErrorMessage, requestProcessing} = this.props;
 
         return (
             <div className="login">
-                <h1>Login</h1>
+                <h3 className="mb-3">Добро пожаловать в Budget Keeper</h3>
+                <p className="login-text">Для входа в приложение введите логин и пароль</p>
+                <p className="login-text">Если вы не зарегистрированы, нажмите кнопку "Регистрация"</p>
                 <div className="login-form-wrapper">
                     <Form onSubmit={this.onSubmit} validated={formValid}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Login</Form.Label>
-                            <Form.Control required type="text" placeholder="Enter login" value={login} onChange={this.onLoginChange}/>
-                            <Form.Text className="text-muted">
-                                We'll never share your email with anyone else.
-                            </Form.Text>
+                            <Form.Label>Логин</Form.Label>
+                            <Form.Control required type="text" placeholder="Введите логин" value={login}
+                                          onChange={this.onLoginChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control required type="password" placeholder="Enter password" value={password} onChange={this.onPasswordChange}/>
-                            <Form.Text className="text-muted">
-                                Please, think up the strongest password you can
-                            </Form.Text>
+                            <Form.Label>Пароль</Form.Label>
+                            <Form.Control required type="password" placeholder="Введите пароль" value={password}
+                                          onChange={this.onPasswordChange}/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
-                            Submit
+                            Войти
+                        </Button>
+                        <Button className="login-button-registration" href="/registration" variant="success">
+                            Регистрация
                         </Button>
 
-                        { requestProcessing && (
-                            <Spinner animation="border" size="sm" variant="primary" />
+                        {requestProcessing && (
+                            <Spinner animation="border" size="sm" variant="primary"/>
                         )}
 
-                        { requestErrorMessage && (
+                        {requestErrorMessage && (
                             <p className="login-error-message">
-                                Login error: {requestErrorMessage}
+                                Ошибка: {requestErrorMessage}
                             </p>
                         )}
                     </Form>
                 </div>
-                <UselessButton />
             </div>
         );
     }

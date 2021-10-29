@@ -49,7 +49,12 @@ class LastOperations extends Component {
                         lastPayments && lastPayments.map((payment, index) =>
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>{payment.incomeLabel ? "Доход" : "Расход"}</td>
+                                {payment.incomeLabel === true && (
+                                    <td className="table-col-income">{payment.incomeLabel ? "Доход" : "Расход"}</td>
+                                )}
+                                {payment.incomeLabel === false && (
+                                    <td className="table-col-expense">{payment.incomeLabel ? "Доход" : "Расход"}</td>
+                                )}
                                 <td>{payment.value.toLocaleString('ru-RU')}</td>
                                 <td>{payment.categoryName}</td>
                                 <td>{payment.subcategoryName}</td>

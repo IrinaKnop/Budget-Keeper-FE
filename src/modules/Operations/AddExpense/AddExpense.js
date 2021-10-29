@@ -28,8 +28,6 @@ class AddExpense extends Component {
                 value: PropTypes.number,
             }
         )),
-        newCategory: PropTypes.object,
-        newSubcategory: PropTypes.object,
         addingProcessing: PropTypes.bool,
         isAddedPayment: PropTypes.bool,
         getCategories: PropTypes.func,
@@ -87,7 +85,7 @@ class AddExpense extends Component {
     }
 
     onAddingCategoryChange = (event) => {
-        const category = this.props.listCategories.incomeList
+        const category = this.props.listCategories.expensesList
             .filter(category => category.name.toLowerCase() === event.target.value.toLowerCase())
             .map(category => category.name.toLowerCase());
         if (category.length != 0) {
@@ -119,7 +117,7 @@ class AddExpense extends Component {
     }
 
     onAddingSubcategoryChange = (event) => {
-        const subcategory = this.props.listCategories?.incomeList
+        const subcategory = this.props.listCategories?.expensesList
             .flatMap(category => category.listSubcategories)
             .filter(subCategory => subCategory.name.toLowerCase() === event.target.value.toLowerCase())
             .map(subCategory => subCategory.name.toLowerCase());
@@ -151,14 +149,16 @@ class AddExpense extends Component {
             value
         });
 
-        this.props.getCategories();
-
         this.setState( {
             date: "",
             categoryName: "",
             subcategoryName: "",
             value: "",
+            addingCategoryName:"",
+            addingSubcategoryName:"",
         });
+
+        this.props.getCategories();
     }
 
     onSubmitCategoryForm = (event) => {
@@ -185,7 +185,6 @@ class AddExpense extends Component {
         });
         this.setState({
             categoryName: categoryFormat,
-            addingCategoryName:"",
             showAddCategory: false,
         });
     }
@@ -216,24 +215,16 @@ class AddExpense extends Component {
 
         this.setState({
             subcategoryName: subcategoryFormat,
-            addingSubcategoryName:"",
             showAddSubcategory: false,
         });
     }
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     const {isAddedPayment} = this.props;
-    //     if (isAddedPayment) {
-    //         this.props.getAllPayments();
-    //     }
-    // }
 
     render() {
 
         const {
             date, categoryName, subcategoryName, value, uselessType,
             showAddCategory, addingCategoryName, addingCategoryErrorMessage,
-            showAddSubcategory, addingSubcategoryName, addingSubcategoryErrorMessage
+            showAddSubcategory, addingSubcategoryName, addingSubcategoryErrorMessage,
         } = this.state;
         const categoriesNames = this.props.listCategories?.expensesList
             .map(category => category.name);
@@ -242,10 +233,6 @@ class AddExpense extends Component {
             .filter(category => category.name === categoryName)
             .flatMap(category => category.listSubcategories)
             .map(subCategory => subCategory.name);
-
-        const newCategory = this.props.newCategory;
-        const newSubcategory = this.props.newSubcategory;
-        console.log(uselessType)
 
         return (
             <div className="expense">
@@ -264,8 +251,8 @@ class AddExpense extends Component {
                                     .map((value, i) => <option key={i} value={value}>{value}</option>)
                             }
                             {
-                                newCategory && (
-                                    <option value={newCategory.name}>{newCategory.name}</option>
+                                addingCategoryName && (
+                                    <option value={addingCategoryName}>{addingCategoryName}</option>
                                 )
                             }
                             <option>Добавить категорию</option>
@@ -280,8 +267,8 @@ class AddExpense extends Component {
                                     .map((value, i) => <option key={i} value={value}>{value}</option>)
                             }
                             {
-                                newSubcategory && (
-                                    <option value={newSubcategory.name}>{newSubcategory.name}</option>
+                                addingSubcategoryName && categoryName != null && categoryName !== "" &&(
+                                    <option value={addingSubcategoryName}>{addingSubcategoryName}</option>
                                 )
                             }
                             {
@@ -397,8 +384,6 @@ function mapStateToProps(state) {
         addingProcessing: state.payments.addingProcessing,
         listPayments: state.payments.listPayments,
         isAddedPayment: state.payments.isAddedPayment,
-        newCategory: state.payments.newCategory,
-        newSubcategory: state.payments.newSubcategory,
     };
 }
 

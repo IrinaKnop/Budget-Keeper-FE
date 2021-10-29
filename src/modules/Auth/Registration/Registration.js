@@ -86,33 +86,34 @@ class Registration extends Component {
 
         return (
             <div className="registration">
-                <h1>Registration</h1>
+                <h3>Регистрация</h3>
                 <div className="registration-form-wrapper">
                     <Form onSubmit={this.onSubmit}>
                         <Form.Group className="mb-3">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control required type="text" placeholder="Enter name" value={name} onChange={this.onNameChange}/>
+                            <Form.Label>Имя</Form.Label>
+                            <Form.Control required type="text" placeholder="Введите имя" value={name} onChange={this.onNameChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control required type="text" placeholder="Enter last name" value={lastName} onChange={this.onLastNameChange}/>
+                            <Form.Label>Фамилия</Form.Label>
+                            <Form.Control required type="text" placeholder="Введите фамилию" value={lastName} onChange={this.onLastNameChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>E-mail</Form.Label>
-                            <Form.Control required type="email" placeholder="Enter e-mail" value={email} onChange={this.onEmailChange}/>
+                            <Form.Label>Электронная почта</Form.Label>
+                            <Form.Control required type="email" placeholder="Введите e-mail" value={email} onChange={this.onEmailChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Login</Form.Label>
-                            <Form.Control required type="text" placeholder="Enter login" value={login} onChange={this.onLoginChange}/>
+                            <Form.Label>Логин</Form.Label>
+                            <Form.Control required type="text" placeholder="Придумайте логин" value={login} onChange={this.onLoginChange}/>
                         </Form.Group>
                         <Form.Group className="mb-3">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control required type="password" placeholder="Enter password" value={password} onChange={this.onPasswordChange}/>
+                            <Form.Label>Пароль</Form.Label>
+                            <Form.Control required type="password" placeholder="Придумайте пароль" value={password} onChange={this.onPasswordChange}/>
                             <Form.Text className="text-muted">
+                                Длина пароля должна быть не менее 5 символов
                             </Form.Text>
                         </Form.Group>
                         <Button variant="primary" type="submit">
-                            Submit
+                            Зарегистрироваться
                         </Button>
 
                         { requestProcessing && (

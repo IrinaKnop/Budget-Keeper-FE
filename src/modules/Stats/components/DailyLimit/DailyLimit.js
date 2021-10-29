@@ -19,9 +19,14 @@ class DailyLimit extends Component {
         const {dailyLimit} = this.props;
         return (
             <div className="daily-limit">
-                {dailyLimit != null && (
+                {dailyLimit && dailyLimit < 0 && (
+                    <div className="error-balance">
+                        Лимит расходов на сегодня составляет: {dailyLimit.toLocaleString("ru-RU")} руб.
+                    </div>
+                )}
+                {dailyLimit != null && dailyLimit >= 0 && (
                     <div>
-                        Лимит расходов на сегодня составляет: {dailyLimit} руб.
+                        Лимит расходов на сегодня составляет: {dailyLimit.toLocaleString("ru-RU")} руб.
                     </div>
                 )}
             </div>

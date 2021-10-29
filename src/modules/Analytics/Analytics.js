@@ -137,6 +137,7 @@ class Analytics extends Component {
         const dataGraph = this.props.listGraphAnalytics;
         const listCategories = this.props.listCategories;
         const total = data.reduce((prev,next) => prev + next.value, 0);
+        console.log(dataGraph);
 
         return (
             <Container>

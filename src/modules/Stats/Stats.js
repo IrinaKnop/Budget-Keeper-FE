@@ -72,7 +72,7 @@ class Stats extends Component {
                         </Row>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="stats-row-plans-text">
                     Цели:
                 </Row>
                 <Row>

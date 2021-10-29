@@ -71,7 +71,7 @@ class Header extends Component{
                             )}
                             </Nav>
                             <Button className="me-2" onClick={this.onExitButtonClick}>
-                                Exit
+                                Выход
                             </Button>
                         </Nav>
                     </Navbar.Collapse>
